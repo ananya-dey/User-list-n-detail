@@ -7,15 +7,17 @@
       <thead>
         <tr>
           <td>ID</td>
-          <td>Name</td>
-          <td>City</td>
+          <td>Avatar</td>
+          <td>Username</td>
+          <td>JobTitle</td>
         </tr>
       </thead>
       <tbody>
         <tr v-for="user in users">
           <td>{{user.id}}</td>
-          <td>{{user.username}}</td>
-          <td>{{user.address.city}}</td>
+          <td><img :src="user.avatar"></td>
+          <td>{{user.userName}}</td>
+          <td>{{user.jobTitle}}</td>
           <td><router-link class="btn btn-lg btn-success" :to="'/user/' + user.id">View Details</router-link></td>
         </tr>
       </tbody>
@@ -38,10 +40,11 @@
     },
     methods: {
       getUserList(){
-        this.$http.get('https://jsonplaceholder.typicode.com/users')
-        .then(response => {
-          this.users = response.data;
-        });
+        this.$http.get('/static/data.json')
+          .then(response => {
+            this.users = response.data;
+            console.log(this.users);
+          });
       }
     }
   }

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <navbar></navbar>
+    <!--<navbar></navbar>-->
     <router-view></router-view>
   </div>
 </template>
@@ -17,6 +17,6 @@
 
 <style>
 #app {
-  margin-top: 100px;
+  margin-top: 10px;
 }
 </style>

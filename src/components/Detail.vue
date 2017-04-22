@@ -1,13 +1,15 @@
 <template>
 <div class="detail container">
-  <router-link class="btn btn-lg btn-default pull-right" to="/users">Back to List</router-link>
-  <h1 class="page-header">{{user.name}}</h1>
-  <p><strong>Username : </strong>{{user.username}}</p>
+  <router-link class="btn btn-lg btn-default pull-right" to="/">Back to List</router-link>
+  <h1 class="page-header">{{user.userName}}</h1>
+  <p><strong>Avatar : </strong><img :src="user.avatar"></p>
   <p><strong>Email : </strong>{{user.email}}</p>
-  <p><strong>Website : </strong>{{user.website}}</p>
-  <p><strong>Company Name : </strong>{{user.company.name}}</p>
-  <p><strong>City : </strong>{{user.address.city}}</p>
-  <p><strong>Zipcode :</strong>{{user.address.zipcode}}</p>
+  <p><strong>Gender : </strong>{{user.gender}}</p>
+  <p><strong>Address : </strong>{{user.address}}</p>
+  <p><strong>Company : </strong>{{user.company}}</p>
+  <p><strong>Phone :</strong>{{user.phone}}</p>
+  <p><strong>Job Title :</strong>{{user.jobTitle}}</p>
+  <p><strong>Country :</strong>{{user.country}}</p>
 </div>
 
 
@@ -26,10 +28,11 @@
     },
     methods: {
       getUserDetail(id){
-        this.$http.get('https://jsonplaceholder.typicode.com/users/'+id)
-        .then(response => {
-          this.user = response.data;
-        });
+        this.$http.get('/static/data.json/'+id)
+          .then(response => {
+            this.user = response.data;
+            console.log(this.user);
+          });
       }
     }
   }
