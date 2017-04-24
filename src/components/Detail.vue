@@ -20,19 +20,30 @@
     name: 'detail',
     data () {
       return {
+        users: [],
         user: '',
       }
     },
     created: function() {
-      this.getUserDetail(this.$route.params.id);
+      this.getUserList();
     },
     methods: {
-      getUserDetail(id){
-        this.$http.get('/static/data.json/'+id)
+      getUserList(){
+        this.$http.get('/static/data.json')
           .then(response => {
-            this.user = response.data;
-            console.log(this.user);
+            this.users = response.data;
+            console.log(this.users);
+            this.getUserDetail();
           });
+      },
+      getUserDetail(){
+        for(var i=0; i<this.users.length; i++){
+          if(this.users[i].id == this.$route.params.id){
+            this.user = this.users[i];
+            console.log(this.user);
+          }
+        }
+        return null;
       }
     }
   }
